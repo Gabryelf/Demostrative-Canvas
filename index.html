@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Playground — Демонстрация проектов</title>
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <span class="logo-icon"><img class="title-icon" src="assets/icons/svg/flash_on.svg"></span>
+                        <span class="logo-text">Canvas<span class="logo-accent">Playground</span></span>
+                    </div>
+                    <nav class="nav">
+                        <a href="#examples" class="nav-link active">Примеры</a>
+                        <a href="#about" class="nav-link">О проекте</a>
+                        <a href="https://github.com/yourusername/canvas-playground" target="_blank" class="nav-link nav-github">
+                            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">Интерактивные демонстрации</div>
+                    <h1 class="hero-title">
+                        Canvas <span class="highlight">2D</span> Примеры
+                    </h1>
+                    <p class="hero-description">
+                        Коллекция визуальных эффектов, анимаций и игр,<br>
+                        созданных с помощью чистого JavaScript и Canvas API
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number" id="examplesCount">0</span>
+                            <span class="stat-label">Примеров</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Без картинок</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">⚡</span>
+                            <span class="stat-label">60 FPS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Examples Grid -->
+        <section id="examples" class="examples">
+            <div class="container">
+                <div class="section-header">
+                    <img class="title-icon" src="assets/icons/svg/about.svg">
+                    <h2 class="section-title">Примеры проектов</h2>
+                    <p class="section-subtitle">Выберите демонстрацию, чтобы увидеть её в действии</p>
+                </div>
+                <div id="examplesGrid" class="examples-grid">
+                    <!-- Загружается через JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <img class="title-icon" src="assets/icons/svg/faq.svg">
+                        <h2 class="section-title">О проекте</h2>
+                        <p>
+                            <strong>Canvas Playground</strong> — это коллекция демонстрационных проектов,
+                            показывающих возможности HTML5 Canvas 2D API.
+                        </p>
+                        <p>
+                            Каждый пример создан с использованием чистого JavaScript без сторонних библиотек,
+                            картинок или внешних ресурсов — только код и математика.
+                        </p>
+                        <div class="about-features">
+                            <div class="feature">
+                                <img class="feature-icon" src="assets/icons/svg/data_configuration.svg">
+                                <div>
+                                    <h4>Компонентная архитектура</h4>
+                                    <p>Гибкая система для создания сложных анимаций</p>
+                                </div>
+                            </div>
+                            <div class="feature">
+                                <img class="feature-icon" src="assets/icons/svg/gallery.svg">
+                                <div>
+                                    <h4>Модульные примеры</h4>
+                                    <p>Каждый пример независим и самодостаточен</p>
+                                </div>
+                            </div>
+                            <div class="feature">
+                                <img class="feature-icon" src="assets/icons/svg/add_database.svg">
+                                <div>
+                                    <h4>Готовность к расширению</h4>
+                                    <p>Архитектура спроектирована для масштабирования</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-visual">
+                        <div class="tech-stack">
+                            <div class="tech-item">HTML5</div>
+                            <div class="tech-item">CSS3</div>
+                            <div class="tech-item">JavaScript</div>
+                            <div class="tech-item">Canvas 2D</div>
+                            <div class="tech-item">OOP</div>
+                            <div class="tech-item">GitHub Pages</div>
+                        </div>
+                        <div class="about-quote">
+                            "Всё, что вы видите — создано из примитивов, так и 
+                            задумывалось, минимализм как стадия совершенства!"
+                        </div>
+                        <div class="about-quote">
+                            "Идея проекта использовать только текст для рисунков, 
+                            встроенный канвас для холста и код как кисть автора!"
+                        </div>
+                        <div class="about-quote">
+                            "Вы можете ознакомиться с примерами или изучить документацию,
+                            так же когда вы освоитесь не стесняйтесь заглядывать в сам проект —
+                            посмотрите как это устроенно!"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p>© 2024 Canvas Playground. GameDeva</p>
+                    <div class="footer-links">
+                        <a href="https://github.com/Gabryelf/Demostrative-Canvas" target="_blank">GitHub</a>
+                        <a href="https://www.flaticon.com/ru/free-icons/" title="документ иконки">Документ иконки от Freepik - Flaticon</a>
+                        <a href="#" id="scrollTop">Наверх ↑</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Главный скрипт -->
+    <script src="src/main.js"></script>
+</body>
+</html>
