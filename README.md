@@ -74,6 +74,9 @@
 
 ---
 
+## 📖 Документация
+
+- [Core документация](https://github.com/Gabryelf/Demostrative-Canvas/blob/main/src/README.md)
 
 <div align="center">
 ⭐ 2026 Коллекция примеров на JS Canvas 2D без лишних ресурсов - только текст (код = сила!)!
