@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документация — Прыгающий мяч</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="docs-container">
+        <h1>📖 Пример #001: Прыгающий мяч</h1>
+        
+        <section>
+            <h2>Описание</h2>
+            <p>Простая анимация мяча с физикой отскока от стен и пола. 
+            Мяч использует гравитацию и упругое соударение.</p>
+        </section>
+
+        <section>
+            <h2>Технические детали</h2>
+            <ul>
+                <li><strong>Движок:</strong> Чистый JavaScript + Canvas 2D</li>
+                <li><strong>Физика:</strong> Гравитация, упругость, трение</li>
+                <li><strong>Управление:</strong> Клик для добавления мячей</li>
+                <li><strong>Рендеринг:</strong> 60 FPS, градиентная заливка</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Архитектура</h2>
+            <p>Пример использует следующие компоненты:</p>
+            <ul>
+                <li><code>Ball</code> — класс, представляющий мяч</li>
+                <li><code>update()</code> — обновление позиции и скорости</li>
+                <li><code>render()</code> — отрисовка с градиентом и бликом</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Код</h2>
+            <pre><code>
+class Ball {
+    constructor(x, y) {
+        this.x = x || canvas.width / 2;
+        this.y = y || 50;
+        this.vx = (Math.random() - 0.5) * 6;
+        this.vy = (Math.random() - 0.5) * 4 - 2;
+        this.radius = 20 + Math.random() * 15;
+        this.color = `hsl(${Math.random() * 360}, 80%, 60%)`;
+    }
+
+    update() {
+        this.vy += GRAVITY;
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Отскок от стен
+        if (this.x - this.radius < 0) {
+            this.x = this.radius;
+            this.vx = -this.vx * BOUNCE;
+        }
+        if (this.x + this.radius > canvas.width) {
+            this.x = canvas.width - this.radius;
+            this.vx = -this.vx * BOUNCE;
+        }
+        if (this.y + this.radius > canvas.height) {
+            this.y = canvas.height - this.radius;
+            this.vy = -this.vy * BOUNCE;
+            this.vx *= FRICTION;
+        }
+        if (this.y - this.radius < 0) {
+            this.y = this.radius;
+            this.vy = -this.vy * BOUNCE;
+        }
+    }
+}
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Возможные улучшения</h2>
+            <ul>
+                <li>Добавить столкновения между мячами</li>
+                <li>Реализовать различные типы мячей</li>
+                <li>Добавить звуковые эффекты</li>
+            </ul>
+        </section>
+
+        <a href="../index.html" class="back-link">← Вернуться к примеру</a>
+    </div>
+</body>
+</html>
