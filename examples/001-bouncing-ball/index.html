@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример 001 — Прыгающий мяч | Canvas Playground</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0a0a0f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+        .container {
+            background: #12121a;
+            border: 1px solid #2d2d44;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+        canvas {
+            border-radius: 12px;
+            background: #1a1a2e;
+            display: block;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #e2e8f0;
+            margin-bottom: 8px;
+            font-size: 1.4em;
+        }
+        p {
+            color: #94a3b8;
+            font-size: 0.9em;
+            margin-bottom: 16px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #8b5cf6;
+            text-decoration: none;
+            margin-top: 16px;
+            font-size: 0.9em;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .info {
+            color: #64748b;
+            font-size: 0.8em;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Прыгающий мяч</h1>
+        <p>Пример с физикой отскока и гравитацией</p>
+        <canvas id="demo" width="600" height="400"></canvas>
+        <div class="info">
+            Нажмите на холст, чтобы добавить мяч
+        </div>
+        <a href="../../index.html" class="back-link">← Назад к примерам</a>
+    </div>
+
+    <script>
+        // Простая реализация прыгающего мяча
+        const canvas = document.getElementById('demo');
+        const ctx = canvas.getContext('2d');
+
+        const balls = [];
+        const GRAVITY = 0.5;
+        const BOUNCE = 0.8;
+        const FRICTION = 0.99;
+
+        // Класс мяча
+        class Ball {
+            constructor(x, y) {
+                this.x = x || canvas.width / 2;
+                this.y = y || 50;
+                this.vx = (Math.random() - 0.5) * 6;
+                this.vy = (Math.random() - 0.5) * 4 - 2;
+                this.radius = 20 + Math.random() * 15;
+                this.color = `hsl(${Math.random() * 360}, 80%, 60%)`;
+            }
+
+            update() {
+                this.vy += GRAVITY;
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Отскок от стен
+                if (this.x - this.radius < 0) {
+                    this.x = this.radius;
+                    this.vx = -this.vx * BOUNCE;
+                }
+                if (this.x + this.radius > canvas.width) {
+                    this.x = canvas.width - this.radius;
+                    this.vx = -this.vx * BOUNCE;
+                }
+                if (this.y + this.radius > canvas.height) {
+                    this.y = canvas.height - this.radius;
+                    this.vy = -this.vy * BOUNCE;
+                    this.vx *= FRICTION;
+                }
+                if (this.y - this.radius < 0) {
+                    this.y = this.radius;
+                    this.vy = -this.vy * BOUNCE;
+                }
+
+                // Замедление
+                this.vx *= 0.999;
+                if (Math.abs(this.vx) < 0.01) this.vx = 0;
+            }
+
+            render(ctx) {
+                ctx.save();
+                
+                // Тень
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+                ctx.shadowBlur = 20;
+
+                // Основной круг
+                const gradient = ctx.createRadialGradient(
+                    this.x - this.radius * 0.3,
+                    this.y - this.radius * 0.3,
+                    0,
+                    this.x,
+                    this.y,
+                    this.radius
+                );
+                gradient.addColorStop(0, '#ffffff');
+                gradient.addColorStop(0.3, this.color);
+                gradient.addColorStop(1, 'rgba(0, 0, 0, 0.3)');
+
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+
+                // Блик
+                ctx.shadowBlur = 0;
+                ctx.beginPath();
+                ctx.arc(this.x - this.radius * 0.25, this.y - this.radius * 0.25, this.radius * 0.2, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        // Инициализация
+        balls.push(new Ball(canvas.width / 2, 50));
+
+        // Анимация
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Рисуем пол
+            const gradient = ctx.createLinearGradient(0, canvas.height - 20, 0, canvas.height);
+            gradient.addColorStop(0, 'rgba(139, 92, 246, 0.1)');
+            gradient.addColorStop(1, 'rgba(139, 92, 246, 0.3)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, canvas.height - 20, canvas.width, 20);
+
+            // Обновляем и рисуем мячи
+            balls.forEach(ball => {
+                ball.update();
+                ball.render(ctx);
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // Добавление мяча по клику
+        canvas.addEventListener('click', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            const x = (e.clientX - rect.left) * scaleX;
+            const y = (e.clientY - rect.top) * scaleY;
+            balls.push(new Ball(x, y));
+        });
+
+        animate();
+    </script>
+</body>
+</html>

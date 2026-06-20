@@ -1,0 +1,27 @@
+{
+    "name": "canvas-playground",
+    "version": "1.0.0",
+    "description": "Коллекция демонстрационных проектов на Canvas 2D",
+    "main": "src/main.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Gabryelf/Demostrative-Canvas.git"
+    },
+    "keywords": [
+      "canvas",
+      "2d",
+      "animation",
+      "game",
+      "demo",
+      "javascript"
+    ],
+    "author": "Gabryelf",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/Gabryelf/Demostrative-Canvas/issues"
+    },
+    "homepage": "https://github.com/Gabryelf/Demostrative-Canvas#readme"
+  }
