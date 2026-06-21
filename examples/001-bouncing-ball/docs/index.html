@@ -5,88 +5,480 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Документация — Прыгающий мяч</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Подсветка синтаксиса -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
 </head>
 <body>
     <div class="docs-container">
-        <h1>📖 Пример #001: Прыгающий мяч</h1>
-        
-        <section>
-            <h2>Описание</h2>
-            <p>Простая анимация мяча с физикой отскока от стен и пола. 
-            Мяч использует гравитацию и упругое соударение.</p>
-        </section>
+        <!-- Навигация -->
+        <div class="docs-nav">
+            <div class="nav-header">
+                <h1>📖 Документация</h1>
+                <span class="example-id">#001</span>
+            </div>
+            <div class="nav-slides">
+                <button class="nav-btn active" data-slide="0">📋 Обзор</button>
+                <button class="nav-btn" data-slide="1">🏗️ Архитектура</button>
+                <button class="nav-btn" data-slide="2">⚙️ Компоненты</button>
+                <button class="nav-btn" data-slide="3">🎨 Визуализация</button>
+                <button class="nav-btn" data-slide="4">🚀 Использование</button>
+            </div>
+        </div>
 
-        <section>
-            <h2>Технические детали</h2>
-            <ul>
-                <li><strong>Движок:</strong> Чистый JavaScript + Canvas 2D</li>
-                <li><strong>Физика:</strong> Гравитация, упругость, трение</li>
-                <li><strong>Управление:</strong> Клик для добавления мячей</li>
-                <li><strong>Рендеринг:</strong> 60 FPS, градиентная заливка</li>
-            </ul>
-        </section>
+        <!-- Слайды -->
+        <div class="slides-container">
+            <!-- Слайд 0: Обзор -->
+            <div class="slide active" data-index="0">
+                <div class="slide-content">
+                    <h2>🎯 Обзор примера</h2>
+                    <div class="overview-grid">
+                        <div class="overview-text">
+                            <p><strong>Прыгающий мяч</strong> — это классический пример анимации на Canvas 2D, демонстрирующий базовые принципы физического симулятора.</p>
+                            
+                            <div class="features-list">
+                                <div class="feature-item">
+                                    <span class="feature-icon">⚡</span>
+                                    <div>
+                                        <h4>Реалистичная физика</h4>
+                                        <p>Гравитация, упругость и трение создают естественное поведение</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">🎯</span>
+                                    <div>
+                                        <h4>Интерактивность</h4>
+                                        <p>Клик добавляет мячи, клавиша Space управляет паузой</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">🎨</span>
+                                    <div>
+                                        <h4>Визуальные эффекты</h4>
+                                        <p>Градиенты, блики и следы делают анимацию живой</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overview-screenshot">
+                            <img src="../screenshot.png" alt="Скриншот примера" onerror="this.style.display='none'">
+                            <div class="placeholder-screenshot">
+                                <span>🎮</span>
+                                <p>Интерактивная демонстрация</p>
+                            </div>
+                        </div>
+                    </div>
 
-        <section>
-            <h2>Архитектура</h2>
-            <p>Пример использует следующие компоненты:</p>
-            <ul>
-                <li><code>Ball</code> — класс, представляющий мяч</li>
-                <li><code>update()</code> — обновление позиции и скорости</li>
-                <li><code>render()</code> — отрисовка с градиентом и бликом</li>
-            </ul>
-        </section>
+                    <div class="tech-badge-container">
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">Canvas 2D</span>
+                        <span class="tech-badge">OOP</span>
+                        <span class="tech-badge">Физика</span>
+                        <span class="tech-badge">Анимация</span>
+                    </div>
+                </div>
+            </div>
 
-        <section>
-            <h2>Код</h2>
-            <pre><code>
+            <!-- Слайд 1: Архитектура -->
+            <div class="slide" data-index="1">
+                <div class="slide-content">
+                    <h2>🏗️ Архитектура примера</h2>
+                    <p>Пример построен на принципах объектно-ориентированного программирования, что делает код понятным и расширяемым.</p>
+
+                    <div class="architecture-diagram">
+                        <div class="arch-item main">
+                            <span>🎮</span>
+                            <div>
+                                <h4>main.js</h4>
+                                <p>Управляет игровым циклом, обработкой событий и координацией всех компонентов</p>
+                            </div>
+                        </div>
+                        <div class="arch-arrow">↓</div>
+                        <div class="arch-item">
+                            <span>🏀</span>
+                            <div>
+                                <h4>Ball (Класс)</h4>
+                                <p>Инкапсулирует состояние мяча, физику, рендеринг и поведение</p>
+                            </div>
+                        </div>
+                        <div class="arch-arrow">↓</div>
+                        <div class="arch-item sub">
+                            <span>📦</span>
+                            <div>
+                                <h4>Компоненты Ball</h4>
+                                <ul>
+                                    <li><strong>Физика:</strong> gravity, bounce, friction</li>
+                                    <li><strong>Рендеринг:</strong> gradient, shadow, highlight</li>
+                                    <li><strong>След:</strong> trail, maxTrail</li>
+                                    <li><strong>Состояние:</strong> isPaused, active</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-highlight">
+                        <h4>Ключевая структура класса:</h4>
+                        <pre><code class="language-javascript">
 class Ball {
-    constructor(x, y) {
-        this.x = x || canvas.width / 2;
-        this.y = y || 50;
-        this.vx = (Math.random() - 0.5) * 6;
-        this.vy = (Math.random() - 0.5) * 4 - 2;
-        this.radius = 20 + Math.random() * 15;
-        this.color = `hsl(${Math.random() * 360}, 80%, 60%)`;
+    constructor(x, y, config = {}) {
+        // Позиция и размер
+        this.x = x;
+        this.y = y;
+        this.radius = config.radius || 20;
+        
+        // Физические параметры
+        this.vx = 0; // скорость по X
+        this.vy = 0; // скорость по Y
+        this.gravity = config.gravity || 0.6;
+        this.bounce = config.bounce || 0.8;
+        
+        // Визуальные параметры
+        this.color = config.color || '#ff6b6b';
+        this.trail = [];
     }
-
-    update() {
-        this.vy += GRAVITY;
+    
+    update(canvasWidth, canvasHeight) {
+        // Обновление физики
+        this.vy += this.gravity;
         this.x += this.vx;
         this.y += this.vy;
-
-        // Отскок от стен
-        if (this.x - this.radius < 0) {
-            this.x = this.radius;
-            this.vx = -this.vx * BOUNCE;
-        }
-        if (this.x + this.radius > canvas.width) {
-            this.x = canvas.width - this.radius;
-            this.vx = -this.vx * BOUNCE;
-        }
-        if (this.y + this.radius > canvas.height) {
-            this.y = canvas.height - this.radius;
-            this.vy = -this.vy * BOUNCE;
-            this.vx *= FRICTION;
-        }
-        if (this.y - this.radius < 0) {
-            this.y = this.radius;
-            this.vy = -this.vy * BOUNCE;
-        }
+        
+        // Обработка столкновений
+        this.handleCollisions(canvasWidth, canvasHeight);
+    }
+    
+    render(ctx) {
+        // Отрисовка мяча с эффектами
+        this.drawBall(ctx);
+        this.drawTrail(ctx);
+        this.drawHighlight(ctx);
     }
 }
-            </code></pre>
-        </section>
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
 
-        <section>
-            <h2>Возможные улучшения</h2>
-            <ul>
-                <li>Добавить столкновения между мячами</li>
-                <li>Реализовать различные типы мячей</li>
-                <li>Добавить звуковые эффекты</li>
-            </ul>
-        </section>
+            <!-- Слайд 2: Компоненты -->
+            <div class="slide" data-index="2">
+                <div class="slide-content">
+                    <h2>⚙️ Компоненты и их взаимодействие</h2>
+                    <p>Каждый компонент отвечает за свою часть функциональности, что упрощает тестирование и модификацию.</p>
 
-        <a href="../index.html" class="back-link">← Вернуться к примеру</a>
+                    <div class="components-grid">
+                        <div class="component-card">
+                            <div class="component-header" style="border-color: #8b5cf6;">
+                                <span>🔄</span>
+                                <h4>Физический движок</h4>
+                            </div>
+                            <div class="component-body">
+                                <ul>
+                                    <li><strong>Гравитация:</strong> постоянное ускорение вниз</li>
+                                    <li><strong>Упругость:</strong> коэффициент отскока от поверхностей</li>
+                                    <li><strong>Трение:</strong> замедление при касании пола</li>
+                                    <li><strong>Сопротивление:</strong> постепенное замедление в воздухе</li>
+                                </ul>
+                                <div class="component-code">
+                                    <pre><code class="language-javascript">
+// Физика мяча
+this.vy += this.gravity; // падение
+this.x += this.vx;
+this.y += this.vy;
+
+// Отскок от пола
+if (this.y + this.radius > canvasHeight) {
+    this.y = canvasHeight - this.radius;
+    this.vy = -this.vy * this.bounce;
+    this.vx *= this.friction;
+}
+                                    </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="component-card">
+                            <div class="component-header" style="border-color: #ec4899;">
+                                <span>🎨</span>
+                                <h4>Система рендеринга</h4>
+                            </div>
+                            <div class="component-body">
+                                <ul>
+                                    <li><strong>Градиент:</strong> объемная заливка мяча</li>
+                                    <li><strong>Блики:</strong> создание эффекта глянца</li>
+                                    <li><strong>Тени:</strong> реалистичность и глубина</li>
+                                    <li><strong>Следы:</strong> визуализация траектории</li>
+                                </ul>
+                                <div class="component-code">
+                                    <pre><code class="language-javascript">
+// Создание градиента
+const gradient = ctx.createRadialGradient(
+    this.x - this.radius * 0.3,
+    this.y - this.radius * 0.3,
+    0,
+    this.x, this.y,
+    this.radius
+);
+gradient.addColorStop(0, '#ffffff');
+gradient.addColorStop(0.3, this.color);
+gradient.addColorStop(1, 'rgba(0,0,0,0.3)');
+
+ctx.fillStyle = gradient;
+ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+ctx.fill();
+                                    </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="component-card">
+                            <div class="component-header" style="border-color: #fbbf24;">
+                                <span>🎮</span>
+                                <h4>Управление и взаимодействие</h4>
+                            </div>
+                            <div class="component-body">
+                                <ul>
+                                    <li><strong>Клик по холсту:</strong> добавление нового мяча</li>
+                                    <li><strong>Кнопка "Добавить":</strong> быстрая вставка мяча</li>
+                                    <li><strong>Кнопка "Очистить":</strong> удаление всех мячей</li>
+                                    <li><strong>Space:</strong> пауза/возобновление анимации</li>
+                                </ul>
+                                <div class="component-code">
+                                    <pre><code class="language-javascript">
+// Обработка клика по холсту
+canvas.addEventListener('click', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
+    addBall(x, y);
+});
+
+// Пауза по Space
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'Space') {
+        e.preventDefault();
+        isPaused = !isPaused;
+    }
+});
+                                    </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="component-card">
+                            <div class="component-header" style="border-color: #34d399;">
+                                <span>📊</span>
+                                <h4>Игровой цикл</h4>
+                            </div>
+                            <div class="component-body">
+                                <ul>
+                                    <li><strong>requestAnimationFrame:</strong> плавная анимация</li>
+                                    <li><strong>DeltaTime:</strong> независимость от FPS</li>
+                                    <li><strong>FPS счетчик:</strong> мониторинг производительности</li>
+                                    <li><strong>Столкновения:</strong> взаимодействие мячей</li>
+                                </ul>
+                                <div class="component-code">
+                                    <pre><code class="language-javascript">
+function gameLoop(timestamp) {
+    const deltaTime = (timestamp - lastTime) / 1000;
+    lastTime = timestamp;
+    
+    // Обновление FPS счетчика
+    frameCount++;
+    fpsTimer += deltaTime;
+    if (fpsTimer >= 1) {
+        currentFps = Math.round(frameCount / fpsTimer);
+        frameCount = 0;
+        fpsTimer = 0;
+    }
+    
+    update(deltaTime);
+    render();
+    requestAnimationFrame(gameLoop);
+}
+                                    </code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 3: Визуализация -->
+            <div class="slide" data-index="3">
+                <div class="slide-content">
+                    <h2>🎨 Визуализация и эффекты</h2>
+                    <p>Все визуальные эффекты создаются программно без использования изображений.</p>
+
+                    <div class="visual-grid">
+                        <div class="visual-card">
+                            <div class="visual-preview gradient-preview"></div>
+                            <h4>Градиентная заливка</h4>
+                            <p>Используется радиальный градиент для создания объемного эффекта. Светлый центр и темные края имитируют освещение.</p>
+                        </div>
+
+                        <div class="visual-card">
+                            <div class="visual-preview highlight-preview"></div>
+                            <h4>Блики и тени</h4>
+                            <p>Два слоя бликов создают эффект глянцевой поверхности. Тени добавляют глубину и реалистичность.</p>
+                        </div>
+
+                        <div class="visual-card">
+                            <div class="visual-preview trail-preview"></div>
+                            <h4>Система следов</h4>
+                            <p>Следы из предыдущих позиций мяча создают эффект движения. Прозрачность затухает со временем.</p>
+                        </div>
+
+                        <div class="visual-card">
+                            <div class="visual-preview collision-preview"></div>
+                            <h4>Визуализация столкновений</h4>
+                            <p>При столкновении мячи упруго отталкиваются, создавая реалистичную физику взаимодействия.</p>
+                        </div>
+                    </div>
+
+                    <div class="visual-code">
+                        <h4>Код создания визуальных эффектов:</h4>
+                        <pre><code class="language-javascript">
+// Создание градиента
+const gradient = ctx.createRadialGradient(
+    this.x - this.radius * 0.3,
+    this.y - this.radius * 0.3,
+    0, // Внутренний радиус
+    this.x,
+    this.y,
+    this.radius // Внешний радиус
+);
+
+// Добавление цветовых остановок
+gradient.addColorStop(0, '#ffffff'); // Центр - белый
+gradient.addColorStop(0.3, this.color); // Основной цвет
+gradient.addColorStop(1, 'rgba(0,0,0,0.3)'); // Край - темный
+
+// Применение градиента
+ctx.fillStyle = gradient;
+ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+ctx.fill();
+
+// Добавление бликов
+ctx.beginPath();
+ctx.arc(
+    this.x - this.radius * 0.25,
+    this.y - this.radius * 0.25,
+    this.radius * 0.2,
+    0, Math.PI * 2
+);
+ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+ctx.fill();
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 4: Использование -->
+            <div class="slide" data-index="4">
+                <div class="slide-content">
+                    <h2>🚀 Как использовать этот пример</h2>
+                    
+                    <div class="usage-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Запустите пример</h4>
+                                <p>Откройте файл <code>index.html</code> в браузере. Вы увидите холст с тремя мячами.</p>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Взаимодействуйте</h4>
+                                <ul>
+                                    <li>🖱️ <strong>Кликните по холсту</strong> — добавится новый мяч</li>
+                                    <li>➕ Нажмите <strong>"Добавить мяч"</strong> — создаст случайный мяч</li>
+                                    <li>🗑️ Нажмите <strong>"Очистить"</strong> — удалит все мячи</li>
+                                    <li>␣ Нажмите <strong>Space</strong> — пауза/возобновление</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Изучите код</h4>
+                                <p>Откройте файлы <code>ball.js</code> и <code>main.js</code> в редакторе кода. Изучите структуру класса Ball и игровой цикл.</p>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Экспериментируйте</h4>
+                                <p>Попробуйте изменить параметры в конструкторе Ball:</p>
+                                <ul>
+                                    <li><code>gravity</code> — измените силу гравитации</li>
+                                    <li><code>bounce</code> — настройте упругость</li>
+                                    <li><code>friction</code> — измените трение</li>
+                                    <li><code>color</code> — задайте новый цвет мяча</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h4>Расширяйте функциональность</h4>
+                                <p>Вы можете добавить новые возможности:</p>
+                                <ul>
+                                    <li>🎵 Звуковые эффекты при столкновении</li>
+                                    <li>📱 Адаптивность под разные размеры экрана</li>
+                                    <li>🎯 Различные типы мячей</li>
+                                    <li>🔄 Сложную физику взаимодействия</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="usage-tips">
+                        <h4>💡 Советы для новичков</h4>
+                        <div class="tips-grid">
+                            <div class="tip">
+                                <span>📚</span>
+                                <p>Начните с изменения <code>this.radius</code> в классе Ball</p>
+                            </div>
+                            <div class="tip">
+                                <span>🎨</span>
+                                <p>Поэкспериментируйте с цветами в <code>this.color</code></p>
+                            </div>
+                            <div class="tip">
+                                <span>⚡</span>
+                                <p>Измените <code>this.gravity</code> и посмотрите на поведение мячей</p>
+                            </div>
+                            <div class="tip">
+                                <span>🔧</span>
+                                <p>Попробуйте добавить новый тип мяча с уникальными свойствами</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <a href="../index.html" class="btn btn-back">← Вернуться к примеру</a>
+                        <a href="https://github.com/Gabryelf/Demostrative-Canvas" class="btn btn-github">📂 GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Навигация слайдов -->
+        <div class="slide-navigation">
+            <button class="slide-nav prev" id="prevSlide">← Предыдущий</button>
+            <div class="slide-dots" id="slideDots"></div>
+            <button class="slide-nav next" id="nextSlide">Следующий →</button>
+        </div>
+
+        <div class="slide-counter" id="slideCounter">1 / 5</div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

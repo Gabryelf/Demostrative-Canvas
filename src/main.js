@@ -2,7 +2,6 @@
 
 /**
  * Данные о примерах
- * Каждый пример соответствует папке в /examples/
  */
  const EXAMPLES_DATA = [
     {
@@ -83,13 +82,10 @@
  * Загрузка количества примеров
  */
 document.addEventListener('DOMContentLoaded', () => {
-    // Обновляем счетчик примеров
     const examplesCount = document.getElementById('examplesCount');
     if (examplesCount) {
         examplesCount.textContent = EXAMPLES_DATA.length;
     }
-
-    // Загружаем примеры в сетку
     renderExamples();
 });
 
@@ -99,11 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function renderExamples() {
     const grid = document.getElementById('examplesGrid');
     if (!grid) return;
-
-    // Очищаем контейнер
     grid.innerHTML = '';
-
-    // Создаем карточки для каждого примера
     EXAMPLES_DATA.forEach((example, index) => {
         const card = createExampleCard(example, index);
         grid.appendChild(card);
@@ -121,7 +113,7 @@ function createExampleCard(example, index) {
     // GIF или плейсхолдер
     const gifContent = example.gif 
         ? `<img src="${example.gif}" alt="${example.title}" loading="lazy" onerror="this.parentElement.innerHTML='<span class=\'placeholder\'><span class=\'placeholder-icon\'></span>${example.title}</span>'">`
-        : `<span class="placeholder"><span class="placeholder-icon"></span>${example.title}</span>`;
+        : `<span class="placeholder"><span class="placeholder-icon">🎨</span>${example.title}</span>`;
 
     card.innerHTML = `
         <div class="example-gif">
@@ -139,9 +131,18 @@ function createExampleCard(example, index) {
                 ${example.tags.map(tag => `<span class="example-tag">#${tag}</span>`).join('')}
             </div>
             <div class="example-actions">
-                <a href="${example.demoUrl}" class="btn btn-demo" target="_blank">▶ Запустить</a>
-                <a href="${example.docsUrl}" class="btn btn-docs" target="_blank">📖 Документация</a>
-                <a href="${example.codeUrl}" class="btn btn-code" target="_blank">💻 Код</a>
+                <a href="${example.demoUrl}" class="btn btn-demo" target="_blank">
+                    <img src="assets/icons/svg/start.svg" alt="Запустить" class="btn-icon">
+                    Запустить
+                </a>
+                <a href="${example.docsUrl}" class="btn btn-docs" target="_blank">
+                    <img src="assets/icons/svg/document.svg" alt="Документация" class="btn-icon">
+                    Документация
+                </a>
+                <a href="${example.codeUrl}" class="btn btn-code" target="_blank">
+                    <img src="assets/icons/svg/debian.svg" alt="Код" class="btn-icon">
+                    Код
+                </a>
             </div>
         </div>
     `;
@@ -149,7 +150,6 @@ function createExampleCard(example, index) {
     return card;
 }
 
-// Экспорт для использования в других модулях
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { EXAMPLES_DATA, renderExamples };
 }

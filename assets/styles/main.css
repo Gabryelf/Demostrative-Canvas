@@ -644,6 +644,57 @@ body {
     animation: spin 0.8s linear infinite;
 }
 
+/* + css cards */
+
+.btn-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.btn-demo .btn-icon {
+    filter: none;
+}
+
+.btn-docs .btn-icon {
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+}
+
+.btn-code .btn-icon {
+    filter: brightness(0) invert(1);
+    opacity: 0.6;
+}
+
+.btn:hover .btn-icon {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.btn-demo:hover .btn-icon {
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4));
+}
+
+/* Стили для темных кнопок */
+.btn-code:hover .btn-icon {
+    filter: brightness(0) invert(1);
+}
+
+.btn-docs:hover .btn-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .btn-icon {
+        width: 16px;
+        height: 16px;
+    }
+}
+
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
